@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose'
 type TPost = Document & {
   createdAt: Date
   message: string
-  name: string
+  username: string
 }
 
 const postSchema: Schema = new Schema({
@@ -15,7 +15,7 @@ const postSchema: Schema = new Schema({
     type: String,
     required: true,
   },
-  name: {
+  username: {
     type: String,
     required: true,
   },
