@@ -1,7 +1,7 @@
 // src/config/database.ts
 import mongoose from 'mongoose'
 
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/mydatabase'
+const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/chatdemo'
 
 export const connectDatabase = async () => {
   try {
