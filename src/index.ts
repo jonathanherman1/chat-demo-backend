@@ -1,13 +1,12 @@
 import express from 'express'
 import dotenv from 'dotenv-safe'
+dotenv.config()
 // import routes from './routes';
 // import morgan from 'morgan' # can improve logging with morgan for production environments
 import helmet from 'helmet'
 import compression from 'compression'
 import cors from 'cors'
 import { connectDatabase } from './config/database'
-
-dotenv.config()
 
 const app = express()
 const port = process.env.PORT || 3000
