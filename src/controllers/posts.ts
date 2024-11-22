@@ -7,24 +7,71 @@ export const createPost = async (req: Request, res: Response) => {
   const result = postZodSchema.safeParse(req.body)
 
   if (!result.success) {
-    return res.status(400).send(result.error.errors);
+    res.status(400).send(result.error.errors);
+    return
   }
 
   try {
     const createResult = await Post.create(result.data)
     // emit the new post to all connected clients
     io.emit('newPost', createResult)
-    return res.status(201).send(result.data)
+    res.status(201).send(result.data)
+    return
   } catch (error) {
-    return res.status(400).send(error)
+    res.status(400).send(error)
+    return
   }
 }
 
 export const getPosts = async (_: Request, res: Response) => {
   try {
     const posts = await Post.find().sort({ createdAt: -1 })
-    return res.send(posts)
+    res.send(posts)
+    return
   } catch (error) {
-    return res.status(500).send(error)
+    res.status(500).send(error)
+    return
+  }
+}
+
+export const updatePost = async (req: Request, res: Response) => {
+  const { id } = req.params
+  const result = postZodSchema.safeParse(req.body)
+
+  if (!result.success) {
+    res.status(400).send(result.error.errors)
+    return
+  }
+
+  try {
+    const updateResult = await Post.findByIdAndUpdate(id, result.data, { new: true })
+    if (!updateResult) {
+      res.status(404).send({ message: 'Post not found' })
+      return
+    }
+    io.emit('updatePost', updateResult)
+    res.send(updateResult)
+    return
+  } catch (error) {
+    res.status(400).send(error)
+    return
+  }
+}
+
+export const deletePost = async (req: Request, res: Response) => {
+  const { id } = req.params
+
+  try {
+    const deleteResult = await Post.findByIdAndDelete(id)
+    if (!deleteResult) {
+      res.status(404).send({ message: 'Post not found' })
+      return
+    }
+    io.emit('deletePost', id)
+    res.send({ message: 'Post deleted successfully' })
+    return
+  } catch (error) {
+    res.status(400).send(error)
+    return
   }
 }
