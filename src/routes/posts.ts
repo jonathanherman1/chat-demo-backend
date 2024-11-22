@@ -3,7 +3,12 @@ import { createPost, getPosts } from '../controllers/posts';
 
 const router = Router();
 
-router.get('/', getPosts);
-router.post('/', createPost);
+// For the purposes of this demo we want both the base route and the /posts route to return the same data
+const paths = ['/', '/posts']
+
+paths.forEach(path => {
+  router.get(path, getPosts)
+  router.post(path, createPost)
+})
 
 export default router
