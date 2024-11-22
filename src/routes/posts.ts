@@ -7,8 +7,8 @@ const router = Router();
 const paths = ['/', '/posts']
 
 paths.forEach(path => {
-  router.get(path, getPosts)
-  router.post(path, createPost)
+  router.get(path, (req, res) => { getPosts(req, res) })
+  router.post(path, (req, res) => { createPost(req, res) })
 })
 
 export default router
