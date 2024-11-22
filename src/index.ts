@@ -27,7 +27,7 @@ Object.values(routes).forEach((route) => {
 // Normally, express internally creates the http server
 // but we need access to it directly to pass to socket.io
 const server = createServer(app)
-const io = new Server(server)
+export const io = new Server(server)
 
 io.on('connection', (socket) => {
   console.log('a user connected')
