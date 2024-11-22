@@ -1,14 +1,16 @@
-import { Router } from 'express';
-import { createPost, getPosts } from '../controllers/posts';
+import { Router } from 'express'
+import {
+  createPost,
+  deletePost,
+  getPosts,
+  updatePost,
+} from '../controllers/posts'
 
-const router = Router();
+const router = Router()
 
-// For the purposes of this demo we want both the base route and the /posts route to return the same data
-const paths = ['/', '/posts']
-
-paths.forEach(path => {
-  router.get(path, (req, res) => { getPosts(req, res) })
-  router.post(path, (req, res) => { createPost(req, res) })
-})
+router.get('/posts', getPosts)
+router.post('/posts', createPost)
+router.put('/posts/:id', updatePost)
+router.delete('/posts/:id', deletePost)
 
 export default router
