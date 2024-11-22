@@ -11,9 +11,9 @@ export const createPost = async (req: Request, res: Response) => {
   }
 
   try {
-    await Post.create(result.data)
+    const createResult = await Post.create(result.data)
     // emit the new post to all connected clients
-    io.emit('newPost', result.data)
+    io.emit('newPost', createResult)
     return res.status(201).send(result.data)
   } catch (error) {
     return res.status(400).send(error)
