@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/chatdemo'
+const mongoUri = process.env.MONGO_URI
+
+if (!mongoUri) {
+  throw new Error('Mongo_URI environment variable is missing')
+}
 
 export const connectDatabase = async () => {
   try {
