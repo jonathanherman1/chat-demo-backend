@@ -1,10 +1,15 @@
 import mongoose, { Schema, Document } from 'mongoose'
+import { z } from 'zod'
 
-type TPost = Document & {
-  createdAt: Date
-  message: string
-  username: string
-}
+export const postZodSchema = z.object({
+  createdAt: z.date().optional(),
+  message: z.string().min(1, "Message required"),
+  username: z.string().min(1, "Username required"),
+})
+
+type PostBase = z.infer<typeof postZodSchema>
+
+type TPost = Document & PostBase
 
 const postSchema: Schema = new Schema({
   createdAt: {
