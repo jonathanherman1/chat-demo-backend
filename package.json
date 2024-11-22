@@ -4,8 +4,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "nodemon --exec ts-node src/index.ts",
+    "start": "NODE_ENV=production node dist/index.js",
+    "dev": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -43,6 +43,7 @@
     "compression": "^1.7.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "dotenv-flow": "^4.1.0",
     "express": "^5.0.1",
     "helmet": "^8.0.0",
     "mongodb": "^6.10.0",

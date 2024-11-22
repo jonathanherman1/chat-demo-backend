@@ -1,6 +1,12 @@
 import express from 'express'
-import dotenv from 'dotenv-safe'
+import dotenv from 'dotenv-flow'
+import dotenvSafe from 'dotenv-safe'
 dotenv.config()
+// Validate required environment variables
+dotenvSafe.config({
+  example: './.env.example'
+})
+
 import * as routes from './routes'
 // import morgan from 'morgan' # can improve logging with morgan for production environments
 import helmet from 'helmet'
@@ -11,8 +17,6 @@ import { Server } from 'socket.io'
 import { connectDatabase } from './config/database'
 
 const app = express()
-const port = process.env.PORT || 3000
-
 app.use(express.json())
 // app.use(morgan('dev'))
 app.use(helmet())
@@ -27,7 +31,13 @@ Object.values(routes).forEach((route) => {
 // Normally, express internally creates the http server
 // but we need access to it directly to pass to socket.io
 const server = createServer(app)
-export const io = new Server(server)
+export const io = new Server(server, {
+  cors: {
+    origin: process.env.CLIENT_URL,
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }
+})
 
 io.on('connection', (socket) => {
   console.log('a user connected')
@@ -36,6 +46,7 @@ io.on('connection', (socket) => {
   })
 })
 
+const port = process.env.PORT
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
 })
