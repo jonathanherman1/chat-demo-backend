@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv-safe'
 dotenv.config()
-// import routes from './routes';
+import * as routes from './routes'
 // import morgan from 'morgan' # can improve logging with morgan for production environments
 import helmet from 'helmet'
 import compression from 'compression'
@@ -16,7 +16,11 @@ app.use(express.json())
 app.use(helmet())
 app.use(compression())
 app.use(cors())
-// app.use(routes);
+
+// Programmatically add all routes to the app
+Object.values(routes).forEach((route) => {
+  app.use(route)
+})
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
