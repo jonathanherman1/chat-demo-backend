@@ -6,6 +6,8 @@ import * as routes from './routes'
 import helmet from 'helmet'
 import compression from 'compression'
 import cors from 'cors'
+import { createServer } from 'http'
+import { Server } from 'socket.io'
 import { connectDatabase } from './config/database'
 
 const app = express()
@@ -22,7 +24,19 @@ Object.values(routes).forEach((route) => {
   app.use(route)
 })
 
-app.listen(port, () => {
+// Normally, express internally creates the http server
+// but we need access to it directly to pass to socket.io
+const server = createServer(app)
+const io = new Server(server)
+
+io.on('connection', (socket) => {
+  console.log('a user connected')
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
+  })
+})
+
+server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
 })
 
