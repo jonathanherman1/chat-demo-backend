@@ -10,8 +10,8 @@ export const createPost = async (req: Request, res: Response) => {
   }
 
   try {
-    await Post.create(result)
-    res.status(201).send(result)
+    await Post.create(result.data)
+    res.status(201).send(result.data)
   } catch (error) {
     res.status(400).send(error)
   }
