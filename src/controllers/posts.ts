@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express'
 import { Post, postZodSchema } from '../models/Post'
+import { io } from '..'
 
 export const createPost = async (req: Request, res: Response) => {
   // validate the request body with the zod schema
@@ -11,6 +12,8 @@ export const createPost = async (req: Request, res: Response) => {
 
   try {
     await Post.create(result.data)
+    // emit the new post to all connected clients
+    io.emit('newPost', result.data)
     res.status(201).send(result.data)
   } catch (error) {
     res.status(400).send(error)
