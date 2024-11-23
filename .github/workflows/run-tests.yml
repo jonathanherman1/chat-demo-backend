@@ -10,14 +10,14 @@ jobs:
 
     services:
       mongo:
-        image: mongo:latest
+        image: mongo:8.0
         ports:
           - 27017:27017
         options: >-
           --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'"
-          --health-interval 30s
-          --health-timeout 10s
-          --health-retries 10
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
           --name mongo_container
         env:
           MONGO_INITDB_ROOT_USERNAME: root
@@ -35,6 +35,20 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: MongoDB Logs
+      run: docker logs mongo_container
+
+    - name: Wait for MongoDB to be ready
+      run: |
+        for i in {1..10}; do
+          if mongosh --eval "db.runCommand({ ping: 1 })" > /dev/null 2>&1; then
+            echo "MongoDB is ready";
+            break;
+          fi
+          echo "Waiting for MongoDB to be ready...";
+          sleep 5;
+        done
+
     - name: Run tests
       run: npm run test:ci
       env:
@@ -42,7 +56,3 @@ jobs:
         CLIENT_URL: http://localhost:5173
         PORT: 3001
         MONGO_URI: mongodb://localhost:27017/chatdemo
-
-    - name: Print MongoDB logs
-      if: failure()
-      run: docker logs $(docker ps -q --filter ancestor=mongo:latest)
