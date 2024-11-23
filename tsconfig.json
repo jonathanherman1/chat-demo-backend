@@ -4,7 +4,7 @@
     "target": "ESNext",                                  /* Target modern JavaScript for Node.js compatibility. */
     "module": "NodeNext",                                  /* Use ES Modules syntax for modern JavaScript. */
     "moduleResolution": "nodenext",                     /* Resolve modules using Node.js's dual-module system. */
-    "lib": ["es2020"],                                   /* Include libraries for modern ECMAScript features. */
+    "lib": ["ESNext"],                                   /* Include libraries for modern ECMAScript features. */
 
     /* Module Interop and Compatibility */
     "esModuleInterop": true,                             /* Enable interop with CommonJS modules. */
