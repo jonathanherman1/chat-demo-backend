@@ -1,6 +1,10 @@
 import mongoose, { Schema, Document } from 'mongoose'
 import { z } from 'zod'
 
+/** Defines a Zod schema for the Post model. This is primarily used for data validation of incoming requests.
+ * 
+ * Note that we infer a TypeScript type from the Zod schema to use as the base type for the Post model.
+*/
 export const postZodSchema = z.object({
   createdAt: z.date().optional(),
   message: z.string().min(1, "Message required"),
