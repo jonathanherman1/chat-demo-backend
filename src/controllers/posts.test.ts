@@ -28,6 +28,7 @@ describe('Posts Controller', () => {
 
   afterEach(async () => {
     await Post.deleteMany({})
+    server.close()
     emitSpy.mockClear()
   })
 
