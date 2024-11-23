@@ -21,10 +21,27 @@ describe('Database Connection', () => {
 
   it('handles invalid connection string', async () => {
     const originalUri = process.env.MONGODB_URI
+    process.env.MONGODB_URI = 'invalid_connection_string'
+
+    try {
+      await connectDatabase()
+    } catch (err) {
+      expect(err).toBeDefined()
+    } finally {
+      process.env.MONGODB_URI = originalUri
+    }
+  })
+
+  it('handles undefined connection string', async () => {
+    const originalUri = process.env.MONGODB_URI
     process.env.MONGODB_URI = undefined
 
-    mongoose.connection.on('error', (err) => expect(err).toBeDefined())
-    
-    process.env.MONGODB_URI = originalUri
+    try {
+      await connectDatabase()
+    } catch (err) {
+      expect(err).toBeDefined()
+    } finally {
+      process.env.MONGODB_URI = originalUri
+    }
   })
 })
