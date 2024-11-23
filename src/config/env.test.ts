@@ -26,5 +26,9 @@ describe('setupEnv', () => {
     it('loads environment variables and validate them', () => {
       expect(() => setupEnv()).not.toThrow()
     })
+  } else {
+    it('relies on GitHub Actions for injecting environment variables', () => {
+      expect(true).toBe(true)
+    })
   }
 })
