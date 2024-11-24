@@ -17,6 +17,7 @@ This is the backend for a real-time chat application built with Node.js, Express
       - [Development](#development)
       - [Production](#production)
   - [Environment Variables](#environment-variables)
+  - [Usage](#usage)
   - [Deployment](#deployment)
   - [Testing](#testing)
   - [API Endpoints](#api-endpoints)
@@ -164,6 +165,17 @@ PORT=3000
 MONGO_URI=mongodb://localhost:27017/chatdemo
 ```
 
+`.env.device`
+```sh
+NODE_ENV=device
+CLIENT_URL=http://<YOUR_IP_ADDRESS>:4173
+CLIENT_URL2=http://<YOUR_IP_ADDRESS>:5173
+CLIENT_URL3=http://localhost:4173
+CLIENT_URL4=http://localhost:5173
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/chatdemo
+```
+
 `.env.test`
 ```sh
 NODE_ENV=test
@@ -171,6 +183,38 @@ CLIENT_URL=http://localhost:5173
 PORT=3001
 MONGO_URI=mongodb://localhost:27017/chatdemo
 ```
+
+## Usage
+
+To start the development server, run:
+```sh
+npm run dev
+```
+
+To build the project for production, run:
+```sh
+npm run build
+```
+
+To start the development server for use with local devices:
+
+1. Add a `.env.device` file in the root of the repo
+
+    ```sh
+    NODE_ENV=device
+    CLIENT_URL=http://<YOUR_IP_ADDRESS>:4173
+    CLIENT_URL2=http://<YOUR_IP_ADDRESS>:5173
+    CLIENT_URL3=http://localhost:4173
+    CLIENT_URL4=http://localhost:5173
+    PORT=3000
+    MONGO_URI=mongodb://localhost:27017/chatdemo
+    ```
+
+2. Run the command to serve the dev server to all devices over the local network:
+
+    ```sh
+    npm run dev:device
+    ```
 
 ## Deployment
 
