@@ -38,3 +38,4 @@ jobs:
         CLIENT_URL: http://localhost:5173
         PORT: 3001
         MONGO_URI: mongodb://localhost:27017/chatdemo
+        API_VERSION: v1
