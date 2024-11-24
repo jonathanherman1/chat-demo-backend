@@ -7,7 +7,7 @@ import dotenvSafe from 'dotenv-safe'
  * Loads these based on the current environment (development, test, production) set by NODE_ENV in the package scripts.
  */
 export const setupEnv = () => {
-  if (!process.env.GITHUB_ACTIONS) {
+  if (!process.env.GITHUB_ACTIONS && process.env.NODE_ENV !== 'production') {
     dotenv.config()
     // Validate required environment variables
     dotenvSafe.config({
