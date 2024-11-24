@@ -1,4 +1,5 @@
 import { Server } from 'socket.io'
+import { getAllowedOrigins } from './constants'
 
 let io: Server
 
@@ -10,9 +11,11 @@ let io: Server
  * @returns The initialized Socket.IO server instance.
  */
 export const setupSocketIo = (server: any) => {
+  const allowedOrigins = getAllowedOrigins(process.env.NODE_ENV)
+
   io = new Server(server, {
     cors: {
-      origin: process.env.CLIENT_URL,
+      origin: allowedOrigins,
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
       allowedHeaders: ['Content-Type', 'Authorization']
     }

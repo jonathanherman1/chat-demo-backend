@@ -6,6 +6,7 @@
     "build": "tsc",
     "start": "NODE_ENV=production node dist/index.js",
     "dev": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
+    "dev:device": "NODE_ENV=device nodemon --exec ts-node src/index.ts",
     "test": "NODE_ENV=test jest --watch --maxWorkers=4",
     "test:ci": "NODE_ENV=test jest --ci --maxWorkers=4",
     "test:nowatch": "NODE_ENV=test jest --maxWorkers=4"
