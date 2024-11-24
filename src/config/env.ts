@@ -12,7 +12,6 @@ export const setupEnv = () => {
     // Validate required environment variables
     dotenvSafe.config({
       example: './.env.example',
-      allowEmptyValues: true, // Allow empty values to suppress errors
     })
   }
 }

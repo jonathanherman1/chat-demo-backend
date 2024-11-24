@@ -25,7 +25,7 @@ const startServer = async () => {
   server = createServer(app)
   setupSocketIo(server)
 
-  const port = process.env.PORT
+  const port: number = parseInt(process.env.PORT || '', 10) || 3000
   server.listen(port, () => {
     if (process.env.NODE_ENV !== 'production') {
       console.log(`Server is running on http://localhost:${port}`)

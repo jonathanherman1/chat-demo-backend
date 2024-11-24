@@ -2,6 +2,7 @@ import compression from 'compression'
 import cors from 'cors'
 import express, { type Application } from 'express'
 import helmet from 'helmet'
+import { getAllowedOrigins } from './constants'
 
 /**
  * Sets up the middleware for the Express application.
@@ -13,8 +14,11 @@ export const setupMiddleware = (app: Application) => {
   app.use(express.json())
   app.use(helmet())
   app.use(compression())
+
+  const allowedOrigins = getAllowedOrigins(process.env.NODE_ENV)
+
   app.use(cors({
-    origin: process.env.CLIENT_URL,
-    methods: ['GET', 'POST']
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
   }))
 }

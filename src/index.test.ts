@@ -48,7 +48,7 @@ describe('Server Initialization', () => {
   })
 
   it('starts the server on the correct port', () => {
-    const port = process.env.PORT
+    const port = Number(process.env.PORT)
     expect(server.listen).toHaveBeenCalledWith(port, expect.any(Function))
   })
 
