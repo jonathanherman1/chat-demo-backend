@@ -12,8 +12,12 @@ export const gracefulShutdown = async (server: Server) => {
 
   server.close((err) => {
     if (err) {
-      console.error('Error during server close:', err)
-      process.exit(1)
+      if (process.env.NODE_ENV === 'production') {
+        console.error('Error during server close:', err)
+        process.exit(1)
+      } else {
+        throw new Error(`Error during server close: ${err}`);
+      }
     } else {
       console.log('Closed out remaining connections')
       process.exit(0)

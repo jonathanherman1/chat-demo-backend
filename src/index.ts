@@ -4,13 +4,16 @@ import {
   connectDatabase,
   setupEnv,
   setupMiddleware,
+  setupProcessHandlers,
   setupRoutes,
   setupSocketIo,
 } from './config'
-import { setupProcessHandlers } from './config/processHandlers'
+
+// Exporting to use in tests
+export const app = express()
+export let server: ReturnType<typeof createServer>
 
 const startServer = async () => {
-  const app = express()
   setupEnv()
   await connectDatabase()
 
@@ -19,7 +22,7 @@ const startServer = async () => {
 
   // Normally, express internally creates the http server
   // but we need access to it directly to pass to socket.io
-  const server = createServer(app)
+  server = createServer(app)
   setupSocketIo(server)
 
   const port = process.env.PORT
@@ -38,5 +41,10 @@ startServer()
   })
   .catch((err) => {
     console.error('Failed to start server:', err)
-    process.exit(1)
+    if (process.env.NODE_ENV === 'production') {
+      console.error('Failed to start server:', err);
+      process.exit(1);
+    } else {
+      throw new Error(`Failed to start server: ${err}`);
+    }
   })
