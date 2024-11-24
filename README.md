@@ -165,6 +165,17 @@ PORT=3000
 MONGO_URI=mongodb://localhost:27017/chatdemo
 ```
 
+`.env.device`
+```sh
+NODE_ENV=device
+CLIENT_URL=http://<YOUR_IP_ADDRESS>:4173
+CLIENT_URL2=http://<YOUR_IP_ADDRESS>:5173
+CLIENT_URL3=http://localhost:4173
+CLIENT_URL4=http://localhost:5173
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/chatdemo
+```
+
 `.env.test`
 ```sh
 NODE_ENV=test
@@ -189,7 +200,7 @@ To start the development server for use with local devices:
 
 1. Add a `.env.device` file in the root of the repo
 
-    ```
+    ```sh
     NODE_ENV=device
     CLIENT_URL=http://<YOUR_IP_ADDRESS>:4173
     CLIENT_URL2=http://<YOUR_IP_ADDRESS>:5173
