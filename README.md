@@ -155,6 +155,7 @@ NODE_ENV=production
 CLIENT_URL=<frontend-production-url>
 PORT=5173
 MONGO_URI=<SECRET>
+API_VERSION=v1
 ```
 
 `.env.development`
@@ -163,6 +164,7 @@ NODE_ENV=development
 CLIENT_URL=http://localhost:5173
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/chatdemo
+API_VERSION=v1
 ```
 
 `.env.device`
@@ -174,6 +176,7 @@ CLIENT_URL3=http://localhost:4173
 CLIENT_URL4=http://localhost:5173
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/chatdemo
+API_VERSION=v1
 ```
 
 `.env.test`
@@ -182,6 +185,7 @@ NODE_ENV=test
 CLIENT_URL=http://localhost:5173
 PORT=3001
 MONGO_URI=mongodb://localhost:27017/chatdemo
+API_VERSION=v1
 ```
 
 ## Usage
@@ -208,6 +212,7 @@ To start the development server for use with local devices:
     CLIENT_URL4=http://localhost:5173
     PORT=3000
     MONGO_URI=mongodb://localhost:27017/chatdemo
+    API_VERSION=v1
     ```
 
 2. Run the command to serve the dev server to all devices over the local network:
@@ -243,6 +248,10 @@ npm run test:ci
 ```
 
 ## API Endpoints
+
+This API supports versioning. Current version is `v1`.
+
+The base route is `/api/v1`.
 
 ### Posts
 

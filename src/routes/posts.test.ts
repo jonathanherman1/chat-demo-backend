@@ -24,18 +24,18 @@ describe('Post Routes', () => {
   beforeEach(() => {
     app = express()
     app.use(express.json())
-    setupRoutes(app) // Use the same setup logic as your app
+    setupRoutes(app, 'v1') // Use the same setup logic as your app
     jest.clearAllMocks()
   })
 
   it('should call the correct function for GET /posts', async () => {
-    await request(app).get('/posts')
+    await request(app).get('/api/v1/posts')
     expect(postController.getPosts).toHaveBeenCalledTimes(1)
   })
 
   it('should call the correct function for POST /posts', async () => {
     const newPost = { username: 'Jon', message: 'Hello' }
-    await request(app).post('/posts').send(newPost)
+    await request(app).post('/api/v1/posts').send(newPost)
     expect(postController.createPost).toHaveBeenCalledTimes(1)
   })
 })

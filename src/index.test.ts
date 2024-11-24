@@ -36,7 +36,7 @@ describe('Server Initialization', () => {
   })
 
   it('sets up routes', () => {
-    expect(config.setupRoutes).toHaveBeenCalledWith(app)
+    expect(config.setupRoutes).toHaveBeenCalledWith(app, 'v1')
   })
 
   it('creates the HTTP server', () => {
