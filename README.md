@@ -145,7 +145,7 @@ npm start
 ```
 
 ## Environment Variables
-Create a .env files in the root directory and configure the following variables as shown in the `.env.example`
+Create .env files in the root directory and configure the following variables as shown in the `.env.example`
 
 You'll need `.env.production`, `.env.development`, and `.env.test`.
 
