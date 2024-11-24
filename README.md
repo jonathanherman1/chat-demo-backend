@@ -17,12 +17,13 @@ This is the backend for a real-time chat application built with Node.js, Express
       - [Development](#development)
       - [Production](#production)
   - [Environment Variables](#environment-variables)
+  - [Deployment](#deployment)
+  - [Testing](#testing)
   - [API Endpoints](#api-endpoints)
     - [Posts](#posts)
   - [Socket.IO Events](#socketio-events)
     - [Client-Side Events](#client-side-events)
     - [Server-Side Events](#server-side-events)
-  - [Testing](#testing)
   - [License](#license)
   - [Changelog](#changelog)
     - [Launched the first version of the application](#launched-the-first-version-of-the-application)
@@ -171,6 +172,32 @@ PORT=3001
 MONGO_URI=mongodb://localhost:27017/chatdemo
 ```
 
+## Deployment
+
+**<a href="https://chat-demo-frontend.vercel.app/" _target="blank" rel="noopener noreferrer">View a running version here!</a>**
+
+(Frontend deployed on <a href="https://vercel.com" _target="blank" rel="noopener noreferrer">Vercel</a>, Backend deployed on <a href="https://railway.app" _target="blank" rel="noopener noreferrer">Railway</a>)
+
+You can choose to deploy with the service of your choice.
+
+The main thing is to make sure that you set the [environment variables](#environment-variables) correctly in that service.
+
+Note: If you haven't deployed the frontend yet, you may need to set temporary [environment variable(s)](#environment-variables).
+
+## Testing
+
+To run the test suite:
+
+```sh
+npm run test
+```
+
+To run the tests in CI mode:
+
+```sh
+npm run test:ci
+```
+
 ## API Endpoints
 
 ### Posts
@@ -195,20 +222,6 @@ As of client version 1, it doesn't emit any events. The client listens to `newPo
 - `deletePost` - Emitted when a post is deleted
 - `connection` - Emitted when a client connects
 - `disconnect` - Emitted when a client disconnects
-
-## Testing
-
-To run the test suite:
-
-```sh
-npm run test
-```
-
-To run the tests in CI mode:
-
-```sh
-npm run test:ci
-```
 
 ## License
 
