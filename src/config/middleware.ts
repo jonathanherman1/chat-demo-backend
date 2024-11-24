@@ -13,5 +13,7 @@ export const setupMiddleware = (app: Application) => {
   app.use(express.json())
   app.use(helmet())
   app.use(compression())
-  app.use(cors())
+  app.use(cors({
+    origin: process.env.CLIENT_URL
+  }))
 }
