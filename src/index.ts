@@ -17,8 +17,10 @@ const startServer = async () => {
   setupEnv()
   await connectDatabase()
 
+  const apiVersion = process.env.API_VERSION
+
   setupMiddleware(app)
-  setupRoutes(app)
+  setupRoutes(app, apiVersion)
 
   // Normally, express internally creates the http server
   // but we need access to it directly to pass to socket.io

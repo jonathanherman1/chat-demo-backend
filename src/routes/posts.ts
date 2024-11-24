@@ -8,9 +8,9 @@ import {
 
 const router = Router()
 
-router.get('/posts', getPosts)
-router.post('/posts', createPost)
-router.put('/posts/:id', updatePost)
-router.delete('/posts/:id', deletePost)
+router.get('/', getPosts)
+router.post('/', createPost)
+router.put('/:id', updatePost)
+router.delete('/:id', deletePost)
 
 export default router

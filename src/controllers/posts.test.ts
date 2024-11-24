@@ -45,7 +45,7 @@ describe('Posts Controller', () => {
 
   it('creates a new post', async () => {
     const res = await request(app)
-      .post('/posts')
+      .post('/api/v1/posts')
       .send({ username: 'Jon', message: 'Hello' })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
@@ -70,7 +70,7 @@ describe('Posts Controller', () => {
     await new Post({ username: 'Jon', message: 'Hello' }).save()
 
     const res = await request(app)
-      .get('/posts')
+      .get('/api/v1/posts')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
