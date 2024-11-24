@@ -147,16 +147,7 @@ npm start
 ## Environment Variables
 Create .env files in the root directory and configure the following variables as shown in the `.env.example`
 
-You'll need `.env.production`, `.env.development`, and `.env.test`.
-
-`.env.production`
-```sh
-NODE_ENV=production
-CLIENT_URL=<frontend-production-url>
-PORT=5173
-MONGO_URI=<SECRET>
-API_VERSION=v1
-```
+You'll need `.env.development`, `.env.device`, `.env.production`, and  `.env.test`,.
 
 `.env.development`
 ```sh
@@ -176,6 +167,15 @@ CLIENT_URL3=http://localhost:4173
 CLIENT_URL4=http://localhost:5173
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/chatdemo
+API_VERSION=v1
+```
+
+`.env.production`
+```sh
+NODE_ENV=production
+CLIENT_URL=<frontend-production-url>
+PORT=5173
+MONGO_URI=<SECRET>
 API_VERSION=v1
 ```
 
