@@ -4,10 +4,10 @@ import {
   connectDatabase,
   setupEnv,
   setupMiddleware,
+  setupProcessHandlers,
   setupRoutes,
   setupSocketIo,
 } from './config'
-import { setupProcessHandlers } from './config/processHandlers'
 
 // Exporting to use in tests
 export const app = express()
